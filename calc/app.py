@@ -26,4 +26,18 @@ def div_response():
     b = int(request.args["b"])
     return str(div(a,b))
 
+operation_functions = {
+    'add': add,
+    'sub': sub,
+    'mult': mult,
+    'div': div
+}
+
+@app.route('/math/<operation>')
+def math_operation_response(operation):
+    a = int(request.args["a"])
+    b = int(request.args["b"])
+    return str(operation_functions.get(operation)(a,b))
+    
+
 
